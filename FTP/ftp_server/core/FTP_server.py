@@ -72,6 +72,7 @@ class Me_socket(socketserver.BaseRequestHandler):
                 self.request.send(b'403,error')
 
     def handle(self):
+        """公共函数"""
         while True:
             try:
                 self.msg = self.request.recv(1024)
