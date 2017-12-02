@@ -9,7 +9,7 @@ import os
 class Me_socket(socketserver.BaseRequestHandler):
 
     def setup(self):
-        self.current_dir = os.path.dirname(os.getcwd()) + '/home'
+        self.current_dir = os.path.dirname(os.getcwd()) + '/Home'
 
     def cd(self,*args):
         cmd_dic = args[0]
@@ -29,7 +29,7 @@ class Me_socket(socketserver.BaseRequestHandler):
     def pwd(self, *args):
         self.request.send(self.current_dir.encode())
 
-    def ls(self,*args):
+    def ls(self, *args):
         file = os.listdir(self.current_dir)
         print(file)
         self.request.send(str(file).encode())
@@ -70,6 +70,19 @@ class Me_socket(socketserver.BaseRequestHandler):
                     print('send file success')
             else:
                 self.request.send(b'403,error')
+
+    def login(self,*args):
+        cmd_str = args[0]
+        user = cmd_str['user']
+        self.current_dir = self.current_dir + '/' + user
+        self.request.send(self.current_dir.encode())
+
+    def register(self,*args):
+        cmd_str = args[0]
+        user = cmd_str['user']
+        self.current_dir = self.current_dir + '/' + user
+        os.mkdir(self.current_dir)
+        self.request.send(self.current_dir.encode())
 
     def handle(self):
         """公共函数"""
