@@ -4,17 +4,41 @@
 import socket
 import os
 import json
+from author import User
 
 class FTP(object):
 
     def __init__(self):
         self.client = socket.socket()
+        self.user = User()
 
     def connect(self, host, port):
         self.client.connect((host, port))
 
+    def login(self):
+        user = self.user.login()
+        info = {
+            'user':user,
+            'action':'login'
+        }
+        self.client.send(json.dumps(info).encode())
+        response = self.client.recv(1024)
+        print(response.decode())
+
+    def register(self):
+        user = self.user.register()
+        info = {
+            'user':user,
+            'action':'register'
+        }
+        self.client.send(json.dumps(info).encode())
+        response = self.client.recv(1024)
+        print(response.decode())
+
     def help(self):
         menu = u'''
+        login
+        register
         ls
         cd
         pwd
@@ -25,8 +49,8 @@ class FTP(object):
 
     def cd(self, *args):
         cmd_str = args[0]
-        data = {'action':'cd',
-                'filename':cmd_str.split()[1]}
+        data = {'action': 'cd',
+                'filename': cmd_str.split()[1]}
         self.client.send(json.dumps(data).encode())
         response = self.client.recv(1024).decode()
         print(response)
@@ -113,5 +137,13 @@ class FTP(object):
                 self.help()
 
 f = FTP()
-f.connect('112.74.35.102',9999)
-f.interaction()
+f.connect('localhost',9999)
+chose = input('login or register')
+if chose == 'login':
+    f.login()
+    f.interaction()
+elif chose == 'register':
+    f.register()
+    f.login()
+    f.interaction()
+
