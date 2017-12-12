@@ -8,6 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
+
 class MyTest(object):
 
     def __init__(self):
@@ -123,6 +124,7 @@ class MyTest(object):
         :return:
         """
         try:
+            self.element_wait(css, 10)
             ele = self.find_element(css)
             ele.send_keys(text)
         except Exception as msg:
