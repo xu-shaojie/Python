@@ -4,12 +4,13 @@
 from appium import webdriver
 from appium.webdriver.connectiontype import ConnectionType
 
+
 class MyTest(object):
 
     def __init__(self):
         self.driver = webdriver.Remote()
 
-    def find_element(self,css):
+    def find_element(self, css):
         key = css.split('->')[0]
         value = css.split('->')[1]
 
@@ -68,19 +69,14 @@ class MyTest(object):
         ele = self.find_element(css)
         ele.send_keys(text)
 
-    def get_contexts(self):
+    def clear(self, css):
         """
-        返回当前会话中的上下文，使用后可以识别H5页面的控件
+        清除文本框内容
+        :param css:
         :return:
         """
-        return self.driver.contexts
-
-    def get_current_context(self):
-        """
-        返回当前的上下文
-        :return:
-        """
-        return self.driver.current_context
+        ele = self.find_element(css)
+        ele.clear()
 
     def submit(self, css):
         """
@@ -89,6 +85,17 @@ class MyTest(object):
         :return:
         """
         self.find_element(css).submit()
+
+    def location(self,css,reference):
+        """
+        获取当前元素的x or y坐标 可搭配swipe,scroll使用更佳
+        :Usage: self.location("id->kw","x")
+        :param css: 元素
+        :param reference: x or y
+        :return:
+        """
+        ele = self.find_element(css)
+        return ele.location.get(reference)
 
     def tap(self, position, timeout):
         """
@@ -197,6 +204,13 @@ class MyTest(object):
         """
         self.driver.launch_app()
 
+    def reset(self):
+        """
+        重置当前的App
+        :return:
+        """
+        self.driver.reset()
+
     def key_event(self, key_code, meta_state=None):
         """
         发送按键
@@ -240,6 +254,7 @@ class MyTest(object):
             connection_type = ConnectionType.ALL_NETWORK_ON
         else:
             print('输入错误....')
+            connection_type = None
         self.driver.set_network_connection(connection_type)
 
     def toggle_location(self):
@@ -249,9 +264,113 @@ class MyTest(object):
         """
         self.driver.toggle_location_services()
 
-    def netword_type(self):
+    def open_notifications(self):
+        """
+        打开通知栏
+        :return:
+        """
+        self.driver.open_notifications()
+
+    def get_contexts(self):
+        """
+        返回当前会话中的上下文，使用后可以识别H5页面的控件
+        :return:
+        """
+        return self.driver.contexts
+
+    def get_current_context(self):
+        """
+        返回当前的上下文
+        :return:
+        """
+        return self.driver.current_context
+
+    def get_network_type(self):
         """
         返回网络类型
         :return:
         """
-        self.driver.network_connection()
+        return self.driver.network_connection
+
+    def current_url(self):
+        """
+        获取当前h5的url
+        :return:
+        """
+        return self.driver.current_url
+
+    def current_window_handle(self):
+        """
+        返回当前的窗口句柄(handle)
+        :return:
+        """
+        return self.driver.current_window_handle
+
+    def current_activity(self):
+        """
+        获取当前的activity
+        :return:
+        """
+        return self.driver.current_activity
+
+    def lock(self, timeout):
+        """
+        后台运行(IOS独有)
+        :param timeout: 持续时间
+        :return:
+        """
+        self.driver.lock(timeout)
+
+    def start_activity(self, app_page, app_activity):
+        """
+        启动其他App的应用程序(安卓独有)
+        :param app_page: App包名
+        :param app_activity: App启动activity
+        :return:
+        """
+        self.driver.start_activity(app_page, app_activity)
+
+    def wait_activity(self, activity, timeout):
+        """
+        等待指定的activity出现,直到超时,扫描间隔为1s
+        :param activity: activity名
+        :param timeout: 超时时间
+        :return:
+        """
+        self.driver.wait_activity(activity, timeout,interval=1)
+
+    def get_screen_shot_as_file(self, filename):
+        """
+        截取当前窗口的截图保存
+        :param filename: 错误截图的地址
+        :return:
+        """
+        self.driver.get_screenshot_as_file(filename)
+
+    def execute_script(self,js):
+        """
+        同步执行js代码
+        :param js:
+        /*
+        在当前窗口/框架（特指Html的iframe）
+        同步执行 javascript 代码。
+        你可以理解为如果这段代码是睡眠5秒，
+        这五秒内主线程的 javascript 不会执行
+        */
+        :return:
+        """
+        self.driver.execute_script(js)
+
+    def execute_async_script(self,js):
+        """
+        异步执行js代码
+        :param js:
+        /*
+        插入 javascript 代码，只是这个是异步的，
+        也就是如果你的代码是睡眠5秒，
+        那么你只是自己在睡，
+        页面的其他 javascript代码还是照常执行
+        */
+        :return:
+        """
+        self.driver.execute_async_script(js)

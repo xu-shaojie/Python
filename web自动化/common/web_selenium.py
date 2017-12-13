@@ -159,21 +159,47 @@ class MyTest(object):
         self.driver.set_window_size(w, h)
 
     def current_title(self):
+        """
+        获取当前网页的标题
+        :return:
+        """
         return self.driver.title
 
     def current_url(self):
+        """
+        获取当前网页的url
+        :return:
+        """
         return self.driver.current_url
 
     def current_handle(self):
+        """
+        获取当前网页的handle
+        :return:
+        """
         return self.driver.current_window_handle
 
     def get_handles(self):
+        """
+        获取浏览器的handle列表
+        :return:
+        """
         return self.driver.window_handles
 
     def get_screen(self, filename):
+        """
+        截取当前窗口的截图保存
+        :param filename: 错误截图的地址
+        :return:
+        """
         self.driver.get_screenshot_as_file(filename)
 
     def implicit_wait(self, timeout):
+        """
+        全局等待时间
+        :param timeout: 等待时长
+        :return:
+        """
         self.driver.implicitly_wait(timeout)
 
     def execute_js(self, js):
@@ -227,6 +253,10 @@ class MyTest(object):
         return self.driver.switch_to.alert()
 
     def dismiss(self):
+        """
+        忽略弹窗
+        :return:
+        """
         try:
             alert = self.to_alert()
             alert.dismiss()
@@ -234,8 +264,19 @@ class MyTest(object):
             raise msg
 
     def accept(self):
+        """
+        确认了弹窗
+        :return:
+        """
         alert = self.to_alert()
         alert.accept()
+
+    def get_alert_text(self):
+        """
+        获取弹窗的文本
+        :return:
+        """
+        return self.to_alert().text
 
     def close(self):
         """
