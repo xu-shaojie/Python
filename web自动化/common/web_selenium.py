@@ -85,21 +85,22 @@ class MyTest(object):
         return ele
 
     def element_wait(self, css, timeout):
+
         key = css.split('->')[0]
         value = css.split('->')[1]
-        message = ("Not find element:{1},Spend {2} seconds".format(css, timeout))
+        message = "Not find element:%s,Spend %s seconds"%(css, timeout)
         if key == "id":
-            WebDriverWait(self.driver,timeout, 0.5).until(EC.presence_of_element_located((By.ID, value)), message)
+            WebDriverWait(self.driver,timeout, 0.5).until(EC.visibility_of_element_located((By.ID, value)), message)
         elif key == "name":
-            WebDriverWait(self.driver,timeout, 0.5).until(EC.presence_of_element_located((By.NAME, value)), message)
+            WebDriverWait(self.driver,timeout, 0.5).until(EC.visibility_of_element_located((By.NAME, value)), message)
         elif key == "xpath":
-            WebDriverWait(self.driver,timeout, 0.5).until(EC.presence_of_element_located((By.XPATH, value)), message)
+            WebDriverWait(self.driver,timeout, 0.5).until(EC.visibility_of_element_located((By.XPATH, value)), message)
         elif key == "css":
-            WebDriverWait(self.driver,timeout, 0.5).until(EC.presence_of_element_located((By.CSS_SELECTOR, value)), message)
+            WebDriverWait(self.driver,timeout, 0.5).until(EC.visibility_of_element_located((By.CSS_SELECTOR, value)), message)
         elif key == "tag":
-            WebDriverWait(self.driver,timeout, 0.5).until(EC.presence_of_element_located((By.TAG_NAME, value)), message)
+            WebDriverWait(self.driver,timeout, 0.5).until(EC.visibility_of_element_located((By.TAG_NAME, value)), message)
         elif key == "link":
-            WebDriverWait(self.driver,timeout, 0.5).until(EC.presence_of_element_located((By.LINK_TEXT, value)), message)
+            WebDriverWait(self.driver,timeout, 0.5).until(EC.visibility_of_element_located((By.LINK_TEXT, value)), message)
         else:
              raise NameError("Please enter the correct targeting elements,id,name,css_selector,link_text,xpath,css")
 

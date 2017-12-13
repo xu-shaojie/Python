@@ -6,7 +6,7 @@ import logging
 
 class Log(object):
 
-    def log(self,level,msg):
+    def log(self, level, msg):
 
         logger = logging.getLogger('client')
         logger.setLevel(logging.DEBUG)
