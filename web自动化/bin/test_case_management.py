@@ -1,11 +1,9 @@
 # _author_='shaojie'
 # -*- coding:utf-8 -*-
 
-from Python.web自动化.test_case.test_login import Test_Login
-from Python.web自动化.common.HTMLTestRunner import HTMLTestRunner
-from unittest import TestLoader,TestSuite,TestCase
-import time
-import os
+from web自动化.test_case.test_login import Test_Login
+from unittest import TestLoader,TestSuite
+
 
 
 # 用例管理模块

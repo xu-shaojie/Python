@@ -1,7 +1,7 @@
 # _author_='shaojie'
 # -*- coding:utf-8 -*-
 
-from Python.web自动化.page.login import Login
+from web自动化.page.login import Login
 import unittest
 import ddt
 

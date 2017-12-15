@@ -1,8 +1,8 @@
 #_author_='shaojie'
 #-*- coding:utf-8 -*-
 
-from Python.web自动化.bin.test_case_management import allTest
-from Python.web自动化.common.HTMLTestRunner import HTMLTestRunner
+from web自动化.bin.test_case_management import allTest
+from web自动化.common.HTMLTestRunner import HTMLTestRunner
 import time
 import os
 
