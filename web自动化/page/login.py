@@ -1,7 +1,7 @@
 # _author_='shaojie'
 # -*- coding:utf-8 -*-
 
-from web.common.web_selenium import MyTest
+from Python.web自动化.common.web_selenium import MyTest
 import time
 
 

@@ -1,11 +1,25 @@
-bin:启动文件
-case:存放测试用例
-common:公共模块
+setup.py: 安装环境依赖库
+lib.txt: 包含了那些需要安装的库
+test_case_management: 用例配置管理(决定执行那些用例)
+bin:程序启动文件
+    --main 程序的主入口
+    --test_case_management.txt 用例管理模块
+    --test_case_management.py  返回需要执行的用例集合
+case:存放测试用例脚本
+common:工具类
             --log 日志模块
             --web_selenium selenium的各种操作
             --send 发送邮件模块
             --config 数据库模块
-report:存放测试报告
-page: 基于页面的封装,方便后期维护
+report:存放用例执行之后的测试报告
+page: Page-Object
             --login 登录页面
             --index 首页
+
+
+操作步骤:
+        1. 运行setup.py文件,安装依赖环境
+        2. 编写测试用例放在case文件夹
+        3. 进入test_case_management.txt配置需要执行的用例
+        4. 运行bin目录下main.py文件
+        5. 进入report文件夹查看测试报告
