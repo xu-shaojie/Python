@@ -1,7 +1,9 @@
 # _author_='shaojie'
 # -*- coding:utf-8 -*-
 
-from web自动化.common.web_selenium import MyTest
+import os,sys
+sys.path.append(os.path.dirname(os.path.dirname(os.getcwd())))
+from web自动化.common.web_selenium import MyTest,login
 import time
 
 

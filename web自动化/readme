@@ -5,7 +5,7 @@ bin:程序启动文件
     --main 程序的主入口
     --test_case_management.txt 用例管理模块
     --test_case_management.py  返回需要执行的用例集合
-case:存放测试用例脚本
+test_case:存放测试用例脚本
 common:工具类
             --log 日志模块
             --web_selenium selenium的各种操作

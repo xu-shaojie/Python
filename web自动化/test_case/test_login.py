@@ -9,6 +9,7 @@ import ddt
 @ddt.ddt
 class Test_Login(unittest.TestCase):
 
+
     def setUp(self):
         self.driver = Login()
 

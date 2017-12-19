@@ -9,6 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 
+
 class MyTest(object):
 
     def __init__(self):
@@ -371,3 +372,14 @@ class MyTest(object):
         """
         ele = self.find_element(css)
         Select(ele).select_by_visible_text(text)
+
+def login(driver):
+        def po(func):
+            def pa(*args,**kwargs):
+                driver.open("http://www.lemfix.com/signin")
+                driver.input_user("")
+                driver.input_password("")
+                driver.click_login_button()
+                func(*args,**kwargs)
+            return pa
+        return po
