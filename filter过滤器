@@ -1,0 +1,36 @@
+# -*- coding:utf8 -*-
+# @author: shaojie
+# @email: MTExNTA0MTQwMkBxcS5jb20="
+
+def is_odd(n):
+
+    return n % 2 ==1
+lis = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+new_list = filter(is_odd, lis)
+print(new_list)
+print(list(new_list))
+
+"""
+filter过滤器
+
+filter(function or None, iterable) --> filter object
+    
+    Return an iterator yielding those items of iterable for which function(item)
+    is true. If function is None, return the items that are true.
+    
+过滤器（函数或None，iterable）——过滤器对象
+返回一个迭代器，如果为真，则返回为哪个函数（item）的迭代器。
+ """
+        
+        :param function_or_None: 函数名
+        :param iterable:  可迭代的对象
+        :return: 
+        """
+
+"""
+
+题目1：
+
+使用filter过滤出1-1000的素数
+
